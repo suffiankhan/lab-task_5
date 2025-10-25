@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+struct node {
+    int data;
+    node* next;
+};
+node* createNode(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->next = NULL;
+    return temp;
+}
+bool search(node* head, int key) {
+    if (head == NULL) return false;
+    if (head->data == key) return true;
+    return search(head->next, key);
+}
+int main() {
+    node* head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+    int key;
+    cin >> key;
+    if (search(head, key)) cout << "Found";
+    else cout << "Not Found";
+    return 0;
+}
